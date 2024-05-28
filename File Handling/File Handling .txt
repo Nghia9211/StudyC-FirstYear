@@ -1,0 +1,57 @@
+File Handling 
+ 			getline(cin,) để nhập một dòng 
+- ifstream:
+	getline(file, line) : duyệt qua tất cả các dòng
+	streamstring ss(line): lưu các stream kí tự 
+	size_t pos = line.find(Word) : Tìm từ "Word" trong dòng đó
+	kiểm tra điều kiện xem kí tự có NULL không bang cách so sánh với  (!= npos)
+	Find(*từ cần tìm kiếm* , *vị trí bắt đàu tìm kiếm là Iterator* );
+	replace(* vị trí từ cần tìm kiếm*, *độ dài từ cần tìm kiếm* , *Từ cần thay thế*)
+	* Nên code lại bài FindAndReplace*
+- ofstream:	
+	When open to append new data to file, dont need to declare "file name" beside the outFile | Ex: ofstream outfile; not outfile("1.txt) bcz it need to constructor then open late with the next command
+	outfile.open("tên file",ios::app) // App for append mode 
+	copy(*beginIterator , *endIterator, OutputIterator Result) 
+		ex: OutputIterator result : ostream_iterator<string>(outfile,"\n") 
+			ostream : out Stream , (outfile, "\n") endline with \n
+
+
+void displayFileContent(const string &filename)
+{
+    ifstream infile(filename);
+    string line;
+    if(infile.is_open())
+    {
+        while(getline(infile, line))
+        {
+            cout << line << endl;
+        }
+        infile.close();
+    }
+    else
+    {
+        cout << "Failed to open file "<< endl;
+    }
+}
+
+
+
+// Split File Problem:
+- Open in file and out files in binary mode bcz :
+	+ High efficiency and speed: not need to convert text into character - the language of computer
+	+ Guaranteed Read/Write Accurate: While open in text mode some char will execute in special ways. For instance, newline '\n' can be convert to '\r\n' when writing into new file and in other hand reading from files.
+	+ Integrity of Data
+- Get File Size Func in File Handling:
+file.seekg(0,ios::end); // Move the pointer to the end of the file
+streampos fileSize = input.tellg(); // Get the current position of the file pointer, indicating the file size
+input.seekg(0,ios::beg); // Move the pointer back to the beginning of the file
+
+- Get data from file :
++ input.read(buffer.Data(),chunkSize): // Read block data with the size of chunkSize and extract to buffer.data()
+	*note : .data() return a direct pointer to the memory array used internally by the vector to store its owned elements
++ output.write(buffer.data(),input.gcount()); // Write block data into output file with the size of input
+	*note : gcount() return the number of characters ( byte) extracted by the input as its read in the function read();
+
+
+
+

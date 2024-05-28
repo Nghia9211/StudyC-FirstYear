@@ -1,0 +1,4 @@
+OOP C++
+
+Set : Truyền tham số
+Get : return 

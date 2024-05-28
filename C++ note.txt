@@ -1,0 +1,13 @@
+:: toán tử phạm vi
+* giải tham chiếu
+& tham chiếu
+>> cin || dịch ô nhớ sang trái
+<< cout ||2 dịch ô nhớ sang phải
+
+mảng,vector : Linear Structure( các ô nhớ nằm cạnh nhau)
+
+cin.ignore() Delete first char program received
+
+
+ios::sync_with_stdio(0);
+cin.tie(0);
